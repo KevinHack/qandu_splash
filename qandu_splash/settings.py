@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+ON_HEROKU = os.getenv('ON_HEROKU', False)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -24,7 +25,10 @@ MAIN_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'uv5@y&)$7w5*$8ba&xb!iq*-9q%)td=lewqf*qm0+52=rmy9*1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if ON_HEROKU == True:
+    DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = []
 
